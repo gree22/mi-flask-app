@@ -10,6 +10,7 @@
     h1 { text-align: center; }
     .button { display: block; margin: 10px auto; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
     .button:hover { background-color: #0056b3; }
+    pre { white-space: pre-wrap; word-wrap: break-word; background: #f1f1f1; padding: 10px; }
   </style>
 </head>
 <body>
@@ -18,17 +19,18 @@
     <h1>Bienvenido a la WebApp</h1>
     <p>Haz clic en el botón para verificar las tarjetas</p>
     <button class="button" onclick="verificar()">Verificar</button>
-    <p id="resultado"></p>
+    <pre id="resultado"></pre>
   </div>
 
   <script>
     function verificar() {
       const tarjetas = [
-        "tarjeta1", "tarjeta2", "tarjeta3", "tarjeta4", "tarjeta5", 
-        "tarjeta6", "tarjeta7", "tarjeta8", "tarjeta9", "tarjeta10"
-      ]; // Aquí puedes poner las tarjetas dinámicamente si lo deseas
+        "1111222233334440", "5555666677778881", "1234123412341234",
+        "9876543210987652", "1111222233334443", "4444555566667774",
+        "8888999900001115", "2222333344445556", "3333444455556667", "6666777788889998"
+      ];
 
-      fetch('/verificar', {
+      fetch('https://ck-bot.onrender.com/verificar', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
