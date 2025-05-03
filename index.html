@@ -16,21 +16,33 @@
 
   <div class="container">
     <h1>Bienvenido a la WebApp</h1>
-    <p>Haz clic en el botón para verificar la tarjeta</p>
+    <p>Haz clic en el botón para verificar las tarjetas</p>
     <button class="button" onclick="verificar()">Verificar</button>
     <p id="resultado"></p>
   </div>
 
   <script>
     function verificar() {
-      fetch('/verificar')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('resultado').textContent = data.status;
-        })
-        .catch(error => console.error('Error al verificar:', error));
+      const tarjetas = [
+        "tarjeta1", "tarjeta2", "tarjeta3", "tarjeta4", "tarjeta5", 
+        "tarjeta6", "tarjeta7", "tarjeta8", "tarjeta9", "tarjeta10"
+      ]; // Aquí puedes poner las tarjetas dinámicamente si lo deseas
+
+      fetch('/verificar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ tarjetas: tarjetas })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('resultado').textContent = JSON.stringify(data.resultados, null, 2);
+      })
+      .catch(error => console.error('Error al verificar:', error));
     }
   </script>
 
 </body>
 </html>
+
