@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi WebApp</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { margin: 20px; }
+    h1 { text-align: center; }
+    .button { display: block; margin: 10px auto; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    .button:hover { background-color: #0056b3; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Bienvenido a la WebApp</h1>
+    <p>Haz clic en el botón para verificar la tarjeta</p>
+    <button class="button" onclick="verificar()">Verificar</button>
+    <p id="resultado"></p>
+  </div>
+
+  <script>
+    function verificar() {
+      fetch('/verificar')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('resultado').textContent = data.status;
+        })
+        .catch(error => console.error('Error al verificar:', error));
+    }
+  </script>
+
+</body>
+</html>
